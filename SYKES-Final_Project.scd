@@ -163,10 +163,6 @@ SynthDef(\mdapiano, { |out=0, freq=440, vel=10|
 	//~make_chord is a helper function used to make Pbinds for each of the notes in a chord. These pbinds will eventually be put into a ppar so the notes of the chord are played simultaneously.
 	~make_chord = {arg midi_array, dur; var pbind_array = []; midi_array.do({|i| pbind_array = pbind_array.add(Pbind(\instrument, \mdapiano, \freq, Pseq([i.midicps], 1), \dur, dur, \amp, 0.5))}); Ppar(pbind_array, 1)};
 
-
-	//s.sync;
-
-
 	//~play is the main function to actually play the generated harmonization. It is also called by ~replay and ~play_traditional.
 	~play = {arg chords, bassline; var melody_pbind_array = Array.new; var chord_ppar_array = Array.new; var bass_pbind_array = Array.new;
 
